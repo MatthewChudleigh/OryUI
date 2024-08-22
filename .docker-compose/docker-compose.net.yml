@@ -1,0 +1,20 @@
+services:
+  db:
+    ports:
+      - "127.0.0.1:5432:5432"
+    networks:
+      - ory
+  ory-admin:
+    ports:
+      - "127.0.0.1:5256:8080"
+    networks:
+      - ory
+  kkratos-self-service:
+    ports:
+      - "127.0.0.1:5110:3000"
+    networks:
+      - ory
+
+networks:
+  ory:
+    external: true

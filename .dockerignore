@@ -1,4 +1,6 @@
 ﻿**/.dockerignore
+**/.docker-compose
+**/.devcontainer
 **/.env
 **/.git
 **/.gitignore

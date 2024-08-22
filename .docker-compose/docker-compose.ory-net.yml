@@ -1,0 +1,48 @@
+services:
+  kratos:
+    ports:
+      - '127.0.0.1:4433:4433' # public
+      - '127.0.0.1:4434:4434' # admin
+    networks: [ ory ]
+
+  kratos-selfservice-ui-node:
+    ports:
+      - '127.0.0.1:3000:3000'
+    networks: [ ory ]
+
+  mailslurper:
+    ports:
+      - '127.0.0.1:4436:4436'
+      - '127.0.0.1:4437:4437'
+    networks: [ ory ]
+
+  hydra-migrate:
+    networks: [ ory ]
+
+  hydra:
+    ports:
+      - "127.0.0.1:4444:4444" # Public port
+      - "127.0.0.1:4445:4445" # Admin port
+      - "127.0.0.1:5555:5555" # Port for hydra token user
+    networks: [ ory ]
+
+  keto:
+    ports:
+      - "127.0.0.1:4466:4466" # read api
+      - "127.0.0.1:4467:4467" # write api
+    networks: [ ory ]
+
+  oathkeeper:
+    ports:
+      - "127.0.0.1:4455:4455" # proxy
+      - "127.0.0.1:4456:4456" # api
+    networks: [ ory ]
+
+  jaeger:
+    ports:
+      - "127.0.0.1:16686:16686" # The UI port
+    networks: [ ory ]
+
+networks:
+  ory:
+    external: true

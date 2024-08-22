@@ -1,0 +1,25 @@
+﻿services:
+  ory-admin:
+    #image: ghcr.io/josxha/ory_admin:latest
+    build: ./OryAdmin
+    environment:
+      - KRATOS_ADMIN_URL=http://ory-kratos-1:4434
+      - KRATOS_PUBLIC_URL=http://ory-kratos-1:4433
+      - HYDRA_ADMIN_URL=http://ory-hydra-1:4445
+      - HYDRA_PUBLIC_URL=http://ory-hydra-1:4444
+      - OATHKEEPER_API_URL=http://ory-oathkeeper-1:4456
+      - KETO_READ_URL=http://ory-keto-1:4466
+      - KETO_WRITE_URL=http://ory-keto-1:4467
+      - ENABLED_SERVICES=kratos,hydra,oathkeeper,keto
+  db:
+    image: postgres:14.3
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
+volumes:
+  postgres-data:
