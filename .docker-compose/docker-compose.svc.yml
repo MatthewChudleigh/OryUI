@@ -1,7 +1,9 @@
 ﻿services:
   ory-admin:
     #image: ghcr.io/josxha/ory_admin:latest
-    build: ./OryAdmin
+    build:
+      context: ../src/OryAdmin
+      dockerfile: ../.docker/OryUI.Dockerfile
     environment:
       - KRATOS_ADMIN_URL=http://ory-kratos-1:4434
       - KRATOS_PUBLIC_URL=http://ory-kratos-1:4433
